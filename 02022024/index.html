@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <script>
+            var arr = [];
+            var number = 1;
+            function resetear(){
+                list = []
+                number=0;
+                const lista = document.getElementById("lista");
+                lista.innerHTML="";
+            }
+
+            function removeitem(i){
+                arr.splice(i,1);
+                number--;
+                pintar();
+            }
+            
+            function pintar(){
+                const lista = document.getElementById("lista");
+                lista.innerHTML="<ul>";
+                for(var i=0; i<arr.length; i++){
+                    lista.innerHTML+="<li>Elemento " + arr[i] + `<button onclick="removeitem(${i})">Eliminar</button></li>`
+                }
+                lista.innerHTML+="</ul>"
+            }
+
+            function anadir(){
+                const value = document.getElementById("nombre").value;
+                if(!arr.includes(value)){
+                    number++;
+                    arr.push(value);
+                    const lista = document.getElementById("lista");
+                    lista.innerHTML="<ul>";
+                    for(var i=0; i<arr.length; i++){
+                        lista.innerHTML+="<li>Elemento " + arr[i] + `<button onclick="removeitem(${i})">Eliminar</button></li>`
+                    }
+                    lista.innerHTML+="</ul>"
+                }
+            }
+
+            function anadir2(){
+                if(number=0)lista.innerHTML="<ul>";
+                const value = document.getElementById("nombre").value;
+                const lista = document.getElementById("lista");
+                if(value.includes(';')){
+                }else{number++;
+                    lista.innerHTML+="<li>>"+value+" "+(number+1)
+                    }
+                //for(var i=0;i<number;i++){
+                //    lista.innerHTML+="<li>>"+value+" "+(i+1)
+                //    }
+            }
+        </script>
+        <style>
+            h1{
+                color:chartreuse;
+                text-transform: capitalize;
+                text-decoration-line: underline;
+                background-color: burlywood;
+                width: 50%;
+                text-align: center;
+                margin: auto;
+                text-shadow: 0cqmax;
+                -webkit-text-fill-color: aquamarine;
+                margin-bottom: 20;
+            }
+        </style>
+        <title>
+            Mi CP
+        </title>
+    </head>
+    <body>
+        <h1>Tiulo del Cp</h1>
+        <button onclick="resetear()">
+            Soy un boton feliz
+        </button>
+        <br>
+        <input id="nombre" type="text"><button onclick="anadir()">
+            Soy un boton triste
+        </button>
+        <br>
+        <div id="lista">
+            <ul>
+                <li>
+                    Elemento
+                </li>
+            </ul>
+        </div>
+        <table border="5">
+            <tr>
+                <td>
+                    Celda del cp 1
+                </td>
+                <td>
+                    Celda del cp 2
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

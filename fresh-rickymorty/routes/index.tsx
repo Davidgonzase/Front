@@ -9,16 +9,23 @@ type data = {
   results : character[]
 }
 
+type pagenum = {
+  pages : number
+}
+
 export default async function Home() {
-  console.log("se hace")
   try {
-    const res = await Axios.get<data>("https://rickandmortyapi/character");
+    const datnum = await Axios.get<pagenum>("https://rickandmortyapi.com/api/character");
+    let char:data[] = []
+    for(let i=0;i<datnum.data.info.pages;i++){
+      char.push((await Axios.get<data>(`https://rickandmortyapi.com/api/character?page=${i+1}`)).data)
+    }
     return (
       <div>
         <h1>Personajes de rick & morty </h1>
-        {res.data.results.map(i=>{
+        {char.map(i=>i.results.map(i=>{
           return <li key={i.id}>{i.name}</li>
-        })}
+        }))}
       </div>
     );
   } catch (error) {

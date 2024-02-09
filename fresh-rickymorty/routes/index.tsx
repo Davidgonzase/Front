@@ -22,7 +22,7 @@ export default async function Home() {
     }
     return (
       <div>
-        <h1>Personajes de rick & morty </h1>
+        <h1 >Personajes de rick & morty </h1>
         {char.map(i=>i.results.map(i=>{
           return <br><a href={'http://localhost:8000/character/'+i.id} >{i.name}</a></br>
         }))}

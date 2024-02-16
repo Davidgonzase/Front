@@ -1,3 +1,5 @@
+
+
 import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
 
 type results = {
@@ -12,10 +14,10 @@ type results = {
 export const handler:Handlers = {
         GET:async (_req:Request,ctx:FreshContext<unknown,results>) => {
         try{
-            const {id} = ctx.params
-            let res = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
+            const {page} = ctx.params
+            let res = await fetch(`https://swapi.dev/api/starships/page/${page}`)
             res = await res.json()
-            if(res.error)throw new Error("Rick no encontrado")
+            if(res.error)throw new Error("Pagina no encontrada")
             return ctx.render({
                 id,
                 name: res.name,

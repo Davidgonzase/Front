@@ -5,7 +5,7 @@ type characterprops = {
     id:string
 }
 
-const characters : FunctionComponent<characterprops> = (props) => {
+const itchar : FunctionComponent<characterprops> = (props) => {
     const {name,id} = props
     return(
         <br>
@@ -14,4 +14,4 @@ const characters : FunctionComponent<characterprops> = (props) => {
     )
 };
 
-export default characters;
+export default itchar;

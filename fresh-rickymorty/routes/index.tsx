@@ -1,7 +1,9 @@
 import Axios from "npm:axios";
 import Itchar from "../components/itchar.tsx";
+import Itchar from "../components/itchar.tsx";
 
 type character = {
+  id : string,
   id : string,
   name: string
 }
@@ -22,11 +24,12 @@ export default async function Home() {
       char.push((await Axios.get<data>(`https://rickandmortyapi.com/api/character?page=${i+1}`)).data)
     }
     return (
-      <div class="characters">
+      <div>
         <h1 >Personajes de rick & morty </h1>
         {char.map(i=>i.results.map(i=>(
           <Itchar name={i.name} id={i.id}/>
         )))}
+        {char.map(i=>i.results.map(i=>(<Itchar name={i.name} id={i.id}/>)))}
       </div>
     );
   } catch (error) {

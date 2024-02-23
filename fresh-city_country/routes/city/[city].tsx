@@ -1,5 +1,6 @@
 import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
 import { load } from "https://deno.land/std@0.204.0/dotenv/mod.ts";
+import City from "../../components/city.tsx";
 
 type result={
     countries?:city[]
@@ -7,12 +8,12 @@ type result={
 }
 
 type city={
+    is_capital: string;
     name:string
     country:string,
     population:string,
     latitude:string,
     longitude:string,
-    capital:string
 }
 
 export const handler:Handlers = {
@@ -47,15 +48,9 @@ const Page = (props:PageProps<result>) =>{
     const data= props.data
     return(<div>
         <h1>Resultados:</h1>
-        {props.data.countries.map(i=>{return <div> <br><menu>
-                <li><b>{`${i.name}`}</b></li> 
-                <p>Country : <a href={`/country/${i.country}`}>{`${i.country}`}</a></p>
-                <p>Population : {`${i.population}`}</p>
-                <p>Latitude : {`${i.latitude}`}</p>
-                <p>Longitude : {`${i.longitude}`}</p>
-                <p>Capital : {`${i.is_capital}`}</p>
-                </menu> </br> </div>
-            })}
+        {props.data.countries.map((i)=>(
+            <City nombre={i.name} population={i.population} latitude={i.latitude} longitude={i.longitude} capital={i.is_capital}/>
+        ))}
         <a href={`/`}>Back</a>
     </div>
 

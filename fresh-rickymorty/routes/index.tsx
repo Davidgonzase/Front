@@ -1,8 +1,8 @@
 import Axios from "npm:axios";
-import itchar from "../components/itchar.tsx";
+import Itchar from "../components/itchar.tsx";
 
 type character = {
-  id : number,
+  id : string,
   name: string
 }
 
@@ -23,11 +23,8 @@ export default async function Home() {
     }
     return (
       <div>
-        
         <h1 >Personajes de rick & morty </h1>
-        {char.map(i=>i.results.map(i=>(
-          <itchar name={i.name} id></itchar>
-        )))}
+        {char.map(i=>i.results.map(i=>(<Itchar name={i.name} id={i.id}/>)))}
       </div>
     );
   } catch (error) {

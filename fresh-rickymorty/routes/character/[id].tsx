@@ -14,8 +14,8 @@ type results = {
 export const handler:Handlers = {
         GET:async (_req:Request,ctx:FreshContext<unknown,results>) => {
         try{
-            const {page} = ctx.params
-            let res = await fetch(`https://swapi.dev/api/starships/page/${page}`)
+            const {id} = ctx.params
+            let res = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
             res = await res.json()
             if(res.error)throw new Error("Pagina no encontrada")
             return ctx.render({

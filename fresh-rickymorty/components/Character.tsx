@@ -11,7 +11,7 @@ const Character : FunctionComponent<Characterprops> = (props) => {
     const {id,name,status,img} = props
     return(
         <div class="character" >
-            <a href={`character/${id}`}>
+            <a href={`/character/${id}`}>
                 <button class="buttonchar">
                     <h2 class="centertext">{name}</h2>
                     <img src={img} class="centerimg"/>

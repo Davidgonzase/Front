@@ -141,11 +141,8 @@ html {
 .buttonup{
   color: white;
   background-color: transparent;
-  border-color: lightskyblue;
   margin: 1px;
   font-size: 20px;
-  border-radius: 50%;
-  border-radius: 5px;
 }
 .buttonup:hover{
   color: white;

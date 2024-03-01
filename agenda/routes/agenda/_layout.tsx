@@ -5,8 +5,8 @@ const Layout = (props: PageProps) =>{
     return(
         <div class="maindiv">
             <div class="updiv">
-                <a href="/add.tsx"><button class="buttonup">Añadir contacto</button></a>
-                <a href="/get.tsx"><button class="buttonup">Contactos</button></a>
+                <a href="/agenda/add"><button class="buttonup">Añadir contacto</button></a>
+                <a href="/agenda/get"><button class="buttonup">Contactos</button></a>
             </div>
             <div class="downdiv">
                 <Component/>

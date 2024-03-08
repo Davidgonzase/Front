@@ -14,7 +14,9 @@ try { // Conexion con mongo DB
   await mongoose.connect(MONGO_URL)
   console.log("Conexión exitosa a MongoDB");
 } catch (error) {
+    console.log(MONGO_URL)
   console.error("Error al conectar a MongoDB:", error);
+  console.log(error.message)
   Deno.exit()
 }
 

@@ -1,5 +1,3 @@
-
-
 import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
 
 type results = {

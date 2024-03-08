@@ -7,12 +7,27 @@ type Error = {
 };
 
 export const Form: FunctionComponent = () => {
+  let boolean = true
   const [error, setError] = useState<Error>({
+    error: false,
+    message: "",
+  });
+  const [error2, setError2] = useState<Error>({
+    error: false,
+    message: "",
+  });
+  const [error3, setError3] = useState<Error>({
     error: false,
     message: "",
   });
 
   const checkAge = (value: number) => {
+    if(!value){
+      setError({
+        error: true,
+        message: "Faltan Edad",
+      });
+    }
     if (value < 18) {
       setError({
         error: true,
@@ -24,22 +39,45 @@ export const Form: FunctionComponent = () => {
       });}
   };
 
+  const check2 = (value:string) =>{
+    if(!value){
+      setError2({
+        error: true,
+        message: "Falta nombre",
+      });
+    } else {setError2({
+        error: false,
+        message: "",
+      });}
+  }
+  const check3 = (value:string) =>{
+    if(!value){
+      setError3({
+        error: true,
+        message: "Falta correo",
+      });
+    } else {setError3({
+        error: false,
+        message: "",
+      });}
+  }
+
   return (
-    <div class="form">
+    <div class="form"  >
       <h1>Introduce tus datos</h1>
-      <form action="/submitform.tsx" method="POST">
+      <form action="/submitform.tsx" method="POST" >
         <div>
           <label for="name">Name</label>
         </div>
         <div>
-          <input type="text" id="name" name="name" />
+          <input type="text" id="name" name="name" onInput={(e) =>check2(e.currentTarget.value)}/>
         </div>
 
         <div>
           <label for="email">Email</label>
         </div>
         <div>
-          <input type="email" id="email" name="email" />
+          <input type="email" id="email" name="email" onInput={(e) =>check3(e.currentTarget.value)}/>
         </div>
 
         <div>
@@ -50,11 +88,11 @@ export const Form: FunctionComponent = () => {
             type="number"
             id="age"
             name="age"
-            onBlur={(e) => checkAge(Number(e.currentTarget.value))}
+            onInput={(e) => checkAge(Number(e.currentTarget.value))}
           />
         </div>
         <div>
-          <button disabled={error.error} type="submit" class="btn">
+          <button onBeforeInput={(e)=>boolean=false} disabled={error.error || error2.error || error3.error || !boolean} type="submit" class="btn">
             Submit
           </button>
         </div>
@@ -63,6 +101,8 @@ export const Form: FunctionComponent = () => {
             Reset
           </button>
         </div>
+        {error2.error && <div class="span-2 error">{error2.message}</div>}
+        {error3.error && <div class="span-2 error">{error3.message}</div>}
         {error.error && <div class="span-2 error">{error.message}</div>}
       </form>
     </div>

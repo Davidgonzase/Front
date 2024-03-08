@@ -1,13 +1,16 @@
 import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
-import Form from "../../components/Form.tsx"
+import Form from "../components/Form.tsx"
 
 type result={
     error?:string
 }
 
 export const handler:Handlers = {
+    GET:async (_req:Request,ctx:FreshContext<result>) => {
+        return ctx.render({})
+    },
     POST:async (_req:Request,ctx:FreshContext<result>) => {
-        const form = await req.formData();
+        const form = await _req.formData();
         const data ={
             name:form.get("name"),
             email:form.get("email"),
@@ -24,10 +27,8 @@ export const handler:Handlers = {
 }
 
 const Page = (props:PageProps<result>) =>{
-    let msg = null
-    if(props.error)msg=props.error;
     return(
-        <div>Hola</div>
+        <div>hola</div>
     )
 }
 

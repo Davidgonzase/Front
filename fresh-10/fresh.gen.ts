@@ -5,7 +5,7 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $severside_index from "./routes/severside/index.tsx";
+import * as $serverside from "./routes/serverside.tsx";
 import * as $Form from "./islands/Form.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -14,7 +14,7 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/index.tsx": $index,
-    "./routes/severside/index.tsx": $severside_index,
+    "./routes/serverside.tsx": $serverside,
   },
   islands: {
     "./islands/Form.tsx": $Form,

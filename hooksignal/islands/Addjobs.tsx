@@ -14,6 +14,9 @@ export type User={
   mail:string
 }
 
+export type usuarios = {
+  usuarios:User[]
+}
 
 export const Addjobs :FunctionComponent = (props) => {
   const mail = useSignal<string>("")

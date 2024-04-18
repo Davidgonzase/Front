@@ -1,6 +1,6 @@
 import { Signal } from "@preact/signals-core";
 import { FunctionComponent } from "preact";
-import { Error,User } from "../islands/Addjobs.tsx"
+import { Error,User, usuarios } from "../islands/Addjobs.tsx"
 import { IS_BROWSER } from "$fresh/runtime.ts"
 
 type context = {
@@ -39,21 +39,20 @@ const Contactform : FunctionComponent<context> = (props) => {
         mail.value=nmail;
     };
     
-    const  add = (mail:string,name:string,users:User[]) => {
-        verify(mail,users)
+    const  add = (mail:string,name:string,users:Signal<User[]>) => {
+        verify(mail,users.value)
         if(!error.value.error){
-            const narray = users
-            narray.push({mail,name})
-            users=narray
+            users.value=[...users.value,{name,mail}]
         }
-    };
+    }
+
     if(IS_BROWSER){
         return(
             <div class="agendaForm">
               <h2>Añadir contacto</h2>
               <input type="email" placeholder="Email" value={mail.value} name="email" onInput={(e)=>verify(e.currentTarget.value,users.value)}></input>
               <input type="name" placeholder="Nombre" value={name.value} onInput={(e)=> name.value=e.currentTarget.value}></input>
-              <button class="inputbut" onClick={(e)=>add(mail.value,name.value,users.value)} disabled={error.value.error || name.value=="" || mail.value==""}>Submit</button>
+              <button class="inputbut" onClick={(e)=>add(mail.value,name.value,users)} disabled={error.value.error || name.value=="" || mail.value==""}>Submit</button>
               <text style="color:red">{error.value.message}</text>
             </div>
         )

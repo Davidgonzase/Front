@@ -8,11 +8,18 @@ type context = {
 }
 
 const City : FunctionComponent<context> = (props) => {
-    
+    const ciudades = [
+        ["España", ["Madrid", "Barcelona", "Murcia", "Badajoz"]],
+        ["Francia", ["Paris", "Marsella", "Niza"]],
+        ["Estados Unidos", ["Los Angeles", "Miami", "Seattle"]],
+        ["Alemania", ["Bayern", "Berlin", "Dortmund"]]
+    ];
+
     const {pais,ciudad} = props
+
     useEffect(()=>{
-        if(!ciudades[pais.value as "España" | "Francia" | "Estados Unidos" | "Alemania"].includes(ciudad.value)){
-            ciudad.value = ciudades[pais.value as "España" | "Francia" | "Estados Unidos" | "Alemania"][0]
+        if(!ciudades[ciudades.findIndex(ciudad => ciudad[0] === pais.value)].includes(ciudad.value)){
+            ciudad.value = ciudades[ciudades.findIndex(ciudad => ciudad[0] === pais.value)][1][0]
         }
     }, [pais.value])
     const show = (pais:string,ciudad:Signal<string>) => {

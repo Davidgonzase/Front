@@ -16,7 +16,7 @@ const Menu: FunctionComponent<context> = (props) =>{
         return(
             <div class="menu">
                 <div value={"Breakfasts"} class={page.value==Pages.BREAKFAST? "selected" : ""} onClick={(e)=>page.value=Pages.BREAKFAST}>Breakfasts</div>
-                <div value={"Luncheons"} class={page.value==Pages.LUNCHEONS? "selected" : ""} onClick={(e)=>page.value=Pages.LUNCHEONS}>Luncheons</div>
+                <div value={"Luncheons"} class={page.value==Pages.LUNCH? "selected" : ""} onClick={(e)=>page.value=Pages.LUNCH}>Luncheons</div>
                 <div value={"Shopping cart"} class={page.value==Pages.CART? "selected" : ""} onClick={(e)=>page.value=Pages.CART}>Shopping cart <div class="quantity">{cart.value.number}</div></div>
             </div>
         )

@@ -1,7 +1,8 @@
 export enum Pages {
-    BREAKFAST = "Breakfast",
-    CART = "Shopping cart",
-    LUNCHEONS = "Luncheons"
+    BREAKFAST = "breakfast",
+    CART = "shopping cart",
+    LUNCH = "lunch",
+    CHECKOUT = "checkout"
 }
 
 export type Cart = {
@@ -16,5 +17,5 @@ export type response = {
     description:string,
     image:string,
     id:number
-    number:0
+    number:number
 }

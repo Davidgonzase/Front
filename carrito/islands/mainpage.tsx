@@ -1,31 +1,29 @@
 import { FunctionComponent } from "preact";
 import Menu from "../components/Menu.tsx";
 import { Signal, useSignal } from "@preact/signals";
-import { Pages } from "../types.ts";
+import { Cart, Pages } from "../types.ts";
 import Products from "../components/Products.tsx";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import Cart from "../components/Cart.tsx";
+import CartP from "../components/Cart.tsx";
+import Checkout from "../components/Checkout.tsx";
 
 const Mainpage: FunctionComponent = () =>{
-    const url1="https://shop-products.deno.dev/products/breakfast"
-    const url2="https://shop-products.deno.dev/products/lunch"
     const page = useSignal(Pages.BREAKFAST)
-    const cart = useSignal({
+    const cart = useSignal<Cart>({
         total:0,
         number:0,
         items:[]
     })
 
-
-
     if(IS_BROWSER){
         return(
             <>
             <Menu page={page} cart={cart}></Menu>
-            {page.value === Pages.BREAKFAST && <Products cart={cart} url={url1}/>}
-            {page.value === Pages.LUNCHEONS && <Products cart={cart} url={url2}/>}
-            {page.value === Pages.CART && <Cart cart={cart}/>}
+            {page.value === Pages.BREAKFAST && <Products cart={cart} page={page}/>}
+            {page.value === Pages.LUNCH && <Products cart={cart} page={page}/>}
+            {page.value === Pages.CART && <CartP cart={cart} page={page}/>}
+            {page.value === Pages.CHECKOUT && <Checkout total={cart.value.total}/>}
         </>
         )
     }else {

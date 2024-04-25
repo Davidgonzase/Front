@@ -12,6 +12,7 @@ const Checkout:FunctionComponent<{total:number}> = ({total}) =>{
         fetch("https://api.first.org/data/v1/countries").then(response=>response.json()).then(data =>{Object.keys(data.data).forEach((key) => {countries.value.push(data.data[key.toString()].country)}); setCountry(countries.value[0])})
     },[])
     useEffect(()=>{
+        let first:boolean=true
         if(country!=""){
             fetch("https://countriesnow.space/api/v0.1/countries/cities", {
             method: 'POST', // Use POST method for sending data
@@ -19,9 +20,10 @@ const Checkout:FunctionComponent<{total:number}> = ({total}) =>{
               'Content-Type': 'application/json', // Set header to indicate JSON data
             },
             body: JSON.stringify({ country })
-        }).then(response=>response.json()).then(data=>{setCities(data.data);setCity(cities[0])})
+        }).then(response=>response.json()).then(data=>{setCities(data.data);if(first){first=false;setCity(data.data[0])}})
         }
     },[country])
+    
     if(IS_BROWSER){
         return(
             <div class="checkout"> 
@@ -44,7 +46,7 @@ const Checkout:FunctionComponent<{total:number}> = ({total}) =>{
                             <option value="Card">Card</option>
                             <option value="Pay Pal">Pay Pal</option>
                         </select>
-                    <div class="total">0.00€</div>
+                    <div class="total">{total.toFixed(2)}</div>
                     <button type="submit">Submit</button>
                 </form>
             </div>

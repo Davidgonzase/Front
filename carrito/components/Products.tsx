@@ -17,7 +17,11 @@ const Products:FunctionComponent<context> = (props) =>{
     fetch(url).then(response => response.json()).then((data)=>{setItems(data)});
     
     const additem = (item:response) =>{
-        cart.value.items.find((i=>))
+        if(cart.value.items.find((i)=>{if(i.id === item.id)return true})){
+            cart.value={total:cart.value.total+=item.price,number:cart.value.number+1,items:cart.value.items.map((i)=>{ if(i.id === item.id){i.number++} return i})}
+        }else{
+            cart.value={total:cart.value.total+=item.price,number:cart.value.number+1,items:[...cart.value.items,{name:item.name,price:item.price,description:item.description,image:item.image,id:item.id,number:1}]}
+        }
     }
 
     const getitems=()=>{
@@ -29,7 +33,7 @@ const Products:FunctionComponent<context> = (props) =>{
                     <span class="price">{elem.price}$</span>
                     <img src={elem.image} alt={elem.name}/>
                     <span class="description">{elem.description}</span>
-                    <span class="add">+</span></div>
+                    <span class="add" onClick={(e)=>additem(elem)}>+</span></div>
             )
         })
     }

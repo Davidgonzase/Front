@@ -9,7 +9,7 @@ const Checkout:FunctionComponent<{total:number}> = ({total}) =>{
     const [city,setCity] =  useState<string>("")
     const [country,setCountry] = useState<string>("")
     useEffect(()=>{
-        fetch("https://api.first.org/data/v1/countries").then(response=>response.json()).then(data =>{Object.keys(data.data).forEach((key) => {countries.value.push(data.data[key.toString()].country)}); setCountry(countries.value[0])})
+        fetch("https://api.first.org/data/v1/countries").then(response=>response.json()).then(data =>{Object.keys(data.data).forEach((key) => {countries.value.push(data.data[key].country)}); setCountry(countries.value[0])})
     },[])
     useEffect(()=>{
         let first:boolean=true

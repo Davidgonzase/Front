@@ -14,7 +14,7 @@ const Products:FunctionComponent<context> = (props) =>{
     const [items,setItems] = useState<response[]>([])
     const {cart,page} = props
     const url = "https://shop-products.deno.dev/products/"+page.value
-    fetch(url).then(response => response.json()).then((data)=>{setItems(data)});
+    useEffect(()=>{fetch(url).then(response => response.json()).then((data)=>{setItems(data)});},[])
     
     const additem = (item:response) =>{
         if(cart.value.items.find((i)=>{if(i.id === item.id)return true})){

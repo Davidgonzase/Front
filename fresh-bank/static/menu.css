@@ -1,0 +1,61 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 200px;
+  align-items:center;
+  padding-left: 100px;
+  padding-right: 100px;
+  background-color: white;
+  color: #ec0411;
+  border-bottom: 5px solid #ec0411;
+
+  a{
+    text-decoration: none;
+    color: #ec0411;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #ec041090;
+  }
+
+
+  div {
+    img{
+      width: 100px;
+      height: 100px;
+    }
+    
+    button{
+      width: 150px;
+      border-style:solid;
+      border-radius: 15px;
+      color: white;
+      padding: 7px;
+    }
+
+    button:hover{
+      background-color: white;
+    }
+
+    .b1{
+      background-color: #ec0411;
+      border-color: #ec0411;
+    }
+    .b1:hover{
+      color: #ec0411;
+    }
+
+    .b2{
+      background-color: rgb(169, 30, 184);
+      border-color: rgb(169, 30, 184);
+      color: white;
+    }
+    .b2:hover{
+      color: rgb(169, 30, 184);
+    }
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+}
